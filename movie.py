@@ -11,5 +11,4 @@ class movie:
         self.description = description
 
     def print_info(self):
-        print("Name: " + self.name + "\n" + "Year: " + str(self.year) + "\n" + "Rating: " + str(self.rating) + "\n" +
-              "Description: " + self.description)
+        print("Name: ", str(self.name), "\n", "Year: ", str(self.year), "\n", "Rating: ", str(self.rating), "\n", "Description: ", str(self.description))
