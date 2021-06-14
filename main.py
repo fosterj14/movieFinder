@@ -4,6 +4,7 @@ from selenium import webdriver
 from selenium.webdriver.support.select import Select
 
 import movie
+import os
 
 url = 'https://www.imdb.com/search/title/'
 driver = webdriver.Chrome("E:\python_work\chromedriver_win32\chromedriver.exe")
@@ -15,7 +16,7 @@ def newMovieList():
     # genre = input("Type a movie genre \n")
     # minRating, maxRating = input("Enter a range of ratings (separated by a dash) \n").split('-')
     # minYear, maxYear = input("Enter a year range (separated by a dash)  \n").split('-')
-    # number = input("How many movies would you like to pull? (50, 100, or 250) \n")
+    # number = input("How many movies would you like to pull? (50, 100, or 250) \n")   maybe fix this at 250
 
     genre = "horror"
     minRating, maxRating = 1, 4
@@ -58,7 +59,9 @@ def newMovieList():
         movies.append(temp)
         i = i + 1
 
-    movieFile = open('%s_list.txt' % genre, 'w+')
+    fullFileName = os.path.join('E:/python_work/movieFinder/', '%s_list.txt' % genre)
+    #check if file already exists
+    movieFile = open(fullFileName, 'w+')
 
     for film in movies:
         movieFile.write("Name: " + str(film.name) + "\n" + "Year: " + str(film.year) + "\n" + "Rating: " + str(
@@ -72,12 +75,17 @@ def newMovieList():
 
 def previousList():
     print("previousList called")
-    inputFile = input("Type the name of the file you wish to pull a movie from: \n")
+    inputFileGenre = input("Type the genre of the file you wish to pull a movie from: \n")
+
+    fullFileName = os.path.join('E:/python_work/movieFinder/', '%s_list.txt' % inputFileGenre)
+    inputFile = open(fullFileName, "r")
+    contents = inputFile.read()
+    #pull a random movie from the list, delete from list as well???
 
 
 # menu
 while selecting:
-    userInput = input("1. Create a new list. \n 2. Use a previous list. \n")
+    userInput = input("1. Create a new list. \n2. Use a previous list. \n")
     if userInput == '1':
         newMovieList()
     elif userInput == '2':
