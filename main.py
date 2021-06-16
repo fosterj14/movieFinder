@@ -61,6 +61,7 @@ def newMovieList():
 
     fullFileName = os.path.join('E:/python_work/movieFinder/', '%s_list.txt' % genre)
     #check if file already exists
+
     movieFile = open(fullFileName, 'w+')
 
     for film in movies:
@@ -80,6 +81,9 @@ def previousList():
     fullFileName = os.path.join('E:/python_work/movieFinder/', '%s_list.txt' % inputFileGenre)
     inputFile = open(fullFileName, "r")
     contents = inputFile.read()
+    parsedContents = contents.split("\n")
+    print("parsed list")
+    print(parsedContents)
     #pull a random movie from the list, delete from list as well???
 
 
